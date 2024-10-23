@@ -2,7 +2,7 @@ name: Esegui script ogni giorno
 
 on:
   schedule:
-    - cron: '45 20 * * *'  # 12:00 ogni giorno
+    - cron: '56 18 * * *'  # 12:00 ogni giorno
 
 jobs:
   run-script:
