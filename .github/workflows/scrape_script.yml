@@ -3,7 +3,7 @@ name: Scraping citazioni
 # Esegui il workflow ogni giorno alle 12:00 UTC
 on:
   schedule:
-    - cron: '48 19 * * *'
+    - cron: '05 20 * * *'
 
 jobs:
   run-scraping:
@@ -26,7 +26,7 @@ jobs:
       run: python scrapingtest.py  # Esegui il tuo script Python
 
     - name: Salvare l'output del scraping
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Usa la versione aggiornata
       with:
         name: citazione-scraping
         path: citazioneAaa.txt  # Salva il file con la citazione come artefatto
