@@ -1,0 +1,32 @@
+name: Scraping giornaliero
+
+# Esegui il workflow ogni giorno alle 12:00 UTC
+on:
+  schedule:
+    - cron: '48 19 * * *'
+
+jobs:
+  run-scraping:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repository
+      uses: actions/checkout@v2
+
+    - name: Configurare Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Installare le dipendenze
+      run: |
+        pip install requests beautifulsoup4  # Installa le librerie necessarie
+
+    - name: Eseguire lo script di scraping
+      run: python scrapingtest.py  # Esegui il tuo script Python
+
+    - name: Salvare l'output del scraping
+      uses: actions/upload-artifact@v2
+      with:
+        name: citazione-scraping
+        path: citazioneAaa.txt  # Salva il file con la citazione come artefatto
