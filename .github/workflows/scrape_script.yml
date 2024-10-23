@@ -3,7 +3,7 @@ name: Scraping citazioni
 # Esegui il workflow ogni giorno alle 12:00 UTC
 on:
   schedule:
-    - cron: '* 20 * * *'
+    - cron: '* 21 * * *'
 
 jobs:
   run-scraping:
