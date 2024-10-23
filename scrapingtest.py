@@ -25,6 +25,8 @@ if response.status_code == 200:
     # Scrivi la citazione e l'autore in un file
     with open("citazione.txt", "w") as f:
         f.write(f"Citazione trovata: {citazione}\n")
-        f.write(f"Autore: {autore}\n---\n")  # Aggiungi il nome dell'autore sotto la citazione
+        f.write(f"Autore: {autore}\n")
+        print("Citazione e autore salvati nel file.")  # Messaggio di conferma
+
 else:
     print(f"Errore nella richiesta: {response.status_code}")
