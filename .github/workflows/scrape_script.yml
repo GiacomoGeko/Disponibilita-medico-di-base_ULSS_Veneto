@@ -1,4 +1,4 @@
-name: Scraping giornaliero
+name: Scraping citazioni
 
 # Esegui il workflow ogni giorno alle 12:00 UTC
 on:
