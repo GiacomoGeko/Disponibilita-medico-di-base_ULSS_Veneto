@@ -15,11 +15,16 @@ if response.status_code == 200:
     # Trova la prima citazione (la classe specifica 'text' contiene le citazioni)
     citazione = soup.find('span', class_='text').text
     
+    # Trova il nome dell'autore (la classe specifica 'author' contiene i nomi)
+    autore = soup.find('small', class_='author').text
+    
     # Stampa la citazione trovata
     print(f"Citazione trovata: {citazione}")
+    print(f"Autore: {autore}")
     
-    # Scrivi la citazione in un file
+    # Scrivi la citazione e l'autore in un file
     with open("citazione.txt", "w") as f:
         f.write(f"Citazione trovata: {citazione}\n")
+        f.write(f"Autore: {autore}\n---\n")  # Aggiungi il nome dell'autore sotto la citazione
 else:
     print(f"Errore nella richiesta: {response.status_code}")
