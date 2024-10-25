@@ -23,6 +23,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 regex
 
+      - name: send default message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+
       - name: Run availability check
         env:
           DOCTORS_LIST: ${{ secrets.DOCTORS_LIST }}
