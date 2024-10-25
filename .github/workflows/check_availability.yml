@@ -6,29 +6,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_doctors:
+  check_availability:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.12'  # Usa la versione di Python necessaria
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 regex
-
-      - name: send default message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: test con appleboy action ${{ secrets.DOCTORS_LIST }}
 
       - name: Run availability check
         env:
@@ -37,8 +30,19 @@ jobs:
           python scrape_doctor.py > output.txt
           if grep -q "Posti liberi: 0" output.txt; then
             echo "Nessun posto disponibile"
+            # Invia messaggio per disponibilità zero
+            - name: Send no availability message
+              uses: appleboy/telegram-action@master
+              with:
+                to: ${{ secrets.TELEGRAM_CHAT_ID }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                message: "Nessun posto disponibile per i medici della tua lista."
           else
             echo "Trovato posto disponibile!"
-            echo "Invio notifica Telegram..."
-            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=Cisonopostidisponibiliperunodeimedicidellatualista!"
-
+            # Invia messaggio per disponibilità positiva
+            - name: Send availability message
+              uses: appleboy/telegram-action@master
+              with:
+                to: ${{ secrets.TELEGRAM_CHAT_ID }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                message: "Ci sono posti disponibili per uno dei medici della tua lista!"
