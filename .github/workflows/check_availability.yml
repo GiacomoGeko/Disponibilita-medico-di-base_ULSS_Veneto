@@ -9,7 +9,7 @@ jobs:
   check_availability:
     runs-on: ubuntu-latest
     env:
-      DOCTORS_LIST: ${{ secrets.DOCTORS_LIST }}  # Imposta DOCTORS_LIST come variabile d'ambiente
+      DOCTORS_LIST: ${{ secrets.MEDICOTEST }}  # Imposta DOCTORS_LIST come variabile d'ambiente
 
 
     steps:
