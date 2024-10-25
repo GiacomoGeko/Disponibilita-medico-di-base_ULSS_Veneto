@@ -1,7 +1,5 @@
 import os
 import re
-
-import regex
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,12 +8,6 @@ site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p
 # Per splittare i dati presi da github repository secrets 'MEDICOTEST'
 doct_list_string = os.environ['DOCTORS_LIST']
 doct_list = doct_list_string.split(',')
-
-# Stampa i codici medici per verifica
-#print("Codici medici:", doct_list_string)  # Stampa qui
-
-# vecchio:
-# doct_list = ["**", "***", "****"]
 
 for current_doct in doct_list:
 
@@ -43,16 +35,10 @@ for current_doct in doct_list:
             if data_analisi[0] == None:
                 raise ValueError("data non trovata")
 
-            stringa_finale = nome_medico + "\t\t\t- " + giorno_lettura + "\t\t\t- Posti liberi: " + numero_posti
+            stringa_finale = nome_medico + " - " + giorno_lettura + " - Posti liberi: " + numero_posti
 
             print(stringa_finale + "\n")
 
 
         except Exception as err:
             print(repr(err))
-
-    #    os.remove("output_test.txt")
-
-    # with open("output_test.html", "w", encoding="utf-8") as outp:
-    #     outp.write(header)
-    #     print("Salvato nel file.")

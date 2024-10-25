@@ -1,4 +1,4 @@
-name: Check Doctor Availability
+name: Disponibilità medici di base
 
 on:
   schedule:
@@ -10,7 +10,7 @@ jobs:
   check_availability:
     runs-on: ubuntu-latest
     env:
-      DOCTORS_LIST: ${{ secrets.MEDICOTEST }}  # Imposta DOCTORS_LIST come variabile d'ambiente
+      DOCTORS_LIST: ${{ secrets.MEDICOTEST }}  # DOCTORS_LIST environment secret "abc123,456def,..."
 
     steps:
       - name: Checkout code
