@@ -12,7 +12,7 @@ doct_list_string = os.environ['DOCTORS_LIST']
 doct_list = doct_list_string.split(',')
 
 # Stampa i codici medici per verifica
-print("Codici medici:", doct_list_string)  # Stampa qui
+#print("Codici medici:", doct_list_string)  # Stampa qui
 
 # vecchio:
 # doct_list = ["**", "***", "****"]
@@ -45,7 +45,7 @@ for current_doct in doct_list:
 
             stringa_finale = nome_medico + "\t\t\t- " + giorno_lettura + "\t\t\t- Posti liberi: " + numero_posti
 
-            print(stringa_finale)
+            print(stringa_finale + "\n")
 
 
         except Exception as err:

@@ -2,7 +2,8 @@ name: Check Doctor Availability
 
 on:
   schedule:
-    - cron: '25 20 * * * '  # Esegue ogni giorno alle 8:00 UTC
+    - cron: '05 04 * * * '  # Esegue ogni giorno alle 8:00 UTC
+
   workflow_dispatch:
 
 jobs:
@@ -10,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCTORS_LIST: ${{ secrets.MEDICOTEST }}  # Imposta DOCTORS_LIST come variabile d'ambiente
-
 
     steps:
       - name: Checkout code
@@ -30,7 +30,7 @@ jobs:
         id: availability_check
         run: |
           python scrape_doctor.py > output.txt
-          # Leggi l'output dallo script e memorizzalo come variabile d'ambiente
+          
           echo "output_message<<EOF" >> $GITHUB_ENV
           cat output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
