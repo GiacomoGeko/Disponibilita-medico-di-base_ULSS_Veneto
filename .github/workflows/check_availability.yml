@@ -2,7 +2,7 @@ name: Check Doctor Availability
 
 on:
   schedule:
-    - cron: '55 19 * * * '  # Esegue ogni giorno alle 8:00 UTC
+    - cron: '05 20 * * * '  # Esegue ogni giorno alle 8:00 UTC
 
 jobs:
   check_doctors:
@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 regex os re
+          pip install requests beautifulsoup4 regex
 
       - name: Run availability check
         env:
