@@ -2,7 +2,8 @@ name: Check Doctor Availability
 
 on:
   schedule:
-    - cron: '05 20 * * * '  # Esegue ogni giorno alle 8:00 UTC
+    - cron: '25 20 * * * '  # Esegue ogni giorno alle 8:00 UTC
+  workflow_dispatch:
 
 jobs:
   check_doctors:
