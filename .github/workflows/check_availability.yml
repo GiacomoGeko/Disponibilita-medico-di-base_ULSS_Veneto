@@ -1,0 +1,37 @@
+name: Check Doctor Availability
+
+on:
+  schedule:
+    - cron: '55 19 * * * '  # Esegue ogni giorno alle 8:00 UTC
+
+jobs:
+  check_doctors:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 regex os re
+
+      - name: Run availability check
+        env:
+          DOCTORS_LIST: ${{ secrets.MEDICOTEST }} # Sostituisci con la lista effettiva
+        run: |
+          python scrape_doctor.py > output.txt
+          if grep -q "Posti liberi: 0" output.txt; then
+            echo "Nessun posto disponibile"
+          else
+            echo "Trovato posto disponibile!"
+            echo "Invio notifica Telegram..."
+            curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
+            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+            -d text="Ci sono posti disponibili per uno dei medici della tua lista!"
