@@ -24,31 +24,17 @@ jobs:
           pip install requests beautifulsoup4 regex
 
       - name: Run availability check
-        env:
-          DOCTORS_LIST: ${{ secrets.DOCTORS_LIST }}
-        id: availability_check  # Assegna un ID a questo passo
+        id: availability_check
         run: |
           python scrape_doctor.py > output.txt
-          if grep -q "Posti liberi: 0" output.txt; then
-            echo "status=Nessun posto disponibile" >> $GITHUB_ENV
-            echo "Nessun posto disponibile"
-          else
-            echo "status=Trovato posto disponibile" >> $GITHUB_ENV
-            echo "Trovato posto disponibile!"
-          fi
+          # Leggi l'output dallo script e memorizzalo come variabile d'ambiente
+          echo "output_message<<EOF" >> $GITHUB_ENV
+          cat output.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Send availability message
-        if: env.status == 'Trovato posto disponibile'  # Esegui solo se ci sono posti disponibili
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "Ci sono posti disponibili per uno dei medici della tua lista!"
-
-      - name: Send no availability message
-        if: env.status == 'Nessun posto disponibile'  # Esegui solo se non ci sono posti disponibili
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "Nessun posto disponibile per i medici della tua lista."
+          message: ${{ env.output_message }}
