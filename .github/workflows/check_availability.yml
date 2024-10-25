@@ -34,6 +34,6 @@ jobs:
             echo "Trovato posto disponibile!"
             echo "Invio notifica Telegram..."
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" \
-            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text='Ci sono posti disponibili per uno dei medici della tua lista!'
+            -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d "text=Cisonopostidisponibiliperunodeimedicidellatualista!"
 
