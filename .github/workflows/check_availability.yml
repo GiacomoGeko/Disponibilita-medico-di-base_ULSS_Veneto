@@ -25,7 +25,7 @@ jobs:
 
       - name: Run availability check
         env:
-          DOCTORS_LIST: ${{ secrets.MEDICOTEST }} # Sostituisci con la lista effettiva
+          DOCTORS_LIST: ${{ secrets.DOCTORS_LIST }}
         run: |
           python scrape_doctor.py > output.txt
           if grep -q "Posti liberi: 0" output.txt; then
@@ -33,6 +33,7 @@ jobs:
           else
             echo "Trovato posto disponibile!"
             echo "Invio notifica Telegram..."
-            curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
-            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-            -d text="Ci sono posti disponibili per uno dei medici della tua lista!"
+            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text='Ci sono posti disponibili per uno dei medici della tua lista!'
+
