@@ -7,39 +7,43 @@ from bs4 import BeautifulSoup
 
 site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p_id=MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-3&p_p_col_count=2&_MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm_action=dettaglio&_MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm_dmcreg="
 
+doct_list = ["***", "****", "*****"]
 
-risposta = requests.get(url)
+for current_doct in doct_list:
 
-if risposta.status_code == 200:
+    url = site_url + current_doct
 
-    soup = BeautifulSoup(risposta.text, 'html.parser')
-    header = ""
-    try:
-        header = soup.table.tr.find_all('th')
-        # text_head = header[0].text
-        body_tr = soup.table.tbody.find_all('tr')
+    risposta = requests.get(url)
 
-        body_posti = body_tr[0].find_all('td')
+    if risposta.status_code == 200:
 
-        doct_name = soup.find(id='tab01').strong.text
-        reg_analysis_date = re.compile(r'\d\d/\d\d/\d\d\d\d')
-        # reg_test = re.compile(r'[a-z]+')
-        data_analisi = reg_analysis_date.findall(header[0].text)
-        if data_analisi[0] == None:
-            raise ValueError("data non trovata")
+        soup = BeautifulSoup(risposta.text, 'html.parser')
 
-        finale = doct_name + " - " + data_analisi[0] + " - Posti liberi: " + body_posti[1].text
+        try:
 
-        print(finale)
+            body_tr = soup.table.tbody.find_all('tr')
+            body_posti = body_tr[0].find_all('td')
+            numero_posti = body_posti[1].text
 
-        # print("data ricerca: " + data_analisi[0])
-        # res_str = res.prettify()
-        # print(text_head)
-    except Exception as err:
-        print(repr(err))
+            nome_medico = soup.find(id='tab01').strong.text
+
+            reg_analysis_date = re.compile(r'\d\d/\d\d/\d\d\d\d')
+            header = soup.table.tr.find_all('th')
+            data_analisi = reg_analysis_date.findall(header[0].text)
+            giorno_lettura = data_analisi[0]
+
+            if data_analisi[0] == None:
+                raise ValueError("data non trovata")
+
+            stringa_finale = nome_medico + "\t\t\t- " + giorno_lettura + "\t\t\t- Posti liberi: " + numero_posti
+
+            print(stringa_finale)
 
 
-#    os.remove("output_test.txt")
+        except Exception as err:
+            print(repr(err))
+
+    #    os.remove("output_test.txt")
 
     # with open("output_test.html", "w", encoding="utf-8") as outp:
     #     outp.write(header)
