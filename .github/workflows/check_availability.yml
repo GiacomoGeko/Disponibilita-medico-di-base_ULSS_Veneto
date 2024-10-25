@@ -28,7 +28,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: test con appleboy action
+          message: test con appleboy action ${{ secrets.DOCTORS_LIST }}
 
       - name: Run availability check
         env:
