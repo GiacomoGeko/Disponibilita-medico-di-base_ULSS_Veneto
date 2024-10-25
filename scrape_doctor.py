@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p_id=MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-3&p_p_col_count=2&_MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm_action=dettaglio&_MEDICI_WAR_portalgeoreferenziazione_INSTANCE_F5Pm_dmcreg="
 
 # Per splittare i dati presi da github repository secrets 'MEDICOTEST'
-doct_list = os.environ.get("DOCTORS_LIST").split(',')
+doct_list = os.environ['DOCTORS_LIST'].split(',')
 
 # Stampa i codici medici per verifica
 print("Codici medici:", doct_list)  # Stampa qui
