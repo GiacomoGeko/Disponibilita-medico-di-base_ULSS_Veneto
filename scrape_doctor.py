@@ -10,6 +10,9 @@ site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p
 # Per splittare i dati presi da github repository secrets 'MEDICOTEST'
 doct_list = os.environ.get("DOCTORS_LIST").split(',')
 
+# Stampa i codici medici per verifica
+print("Codici medici:", doct_list)  # Stampa qui
+
 # vecchio:
 # doct_list = ["**", "***", "****"]
 
