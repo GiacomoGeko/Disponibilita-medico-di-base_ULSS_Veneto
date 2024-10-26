@@ -2,7 +2,7 @@ name: Disponibilità medici di base
 
 on:
   schedule:
-    - cron: '05 04 * * * '  # Esegue ogni giorno alle 8:00 UTC
+    - cron: '55 06 * * * '  # Esegue ogni giorno alle 6:55 UTC --> 8:55
 
   workflow_dispatch:
 
