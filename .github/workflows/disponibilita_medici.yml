@@ -37,9 +37,12 @@ jobs:
           cat output.txt >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
+      - name: print output
+        run: echo ::add-mask:: env.output_message
+
       - name: Send availability message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: echo "::add-mask::{${{ env.output_message }}}"
+          message: ${{ env.output_message }}
