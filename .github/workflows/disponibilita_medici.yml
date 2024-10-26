@@ -37,7 +37,8 @@ jobs:
           # Nascondi ogni riga dell'output nei log per la privacy
           while IFS= read -r line; do
             echo "::add-mask::$line"
-            echo ""  # Aggiunge una riga vuota nel log
+            echo "\n"  # Aggiunge una riga vuota nel log
+            echo "\n"  # Aggiunge una riga vuota nel log
           done <<< "$output_message"
           
           # Aggiungi l'output completo come variabile di ambiente per il passaggio successivo
@@ -45,9 +46,9 @@ jobs:
           echo "$output_message" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
-      - name: print output
-        run: |
-          echo "::add-mask::{env.output_message}"
+#      - name: print output
+#        run: |
+#          echo "::add-mask::{env.output_message}"
 
       - name: Send availability message
         uses: appleboy/telegram-action@master
