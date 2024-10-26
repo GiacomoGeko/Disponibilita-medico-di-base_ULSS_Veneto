@@ -20,6 +20,7 @@ def check_errors():
     if numero_posti == '' or numero_occupati == '':
         raise ValueError(f"{nome_medico} valori posti non trovati")
 
+stringa_fin = ""
 
 for current_doct in doct_list:
 
@@ -50,9 +51,12 @@ for current_doct in doct_list:
 
             giorno_lettura = data_analisi[0]
 
-            stringa_finale = nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati
+            stringa_finale = nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati + " \n\n "
 
-            print(stringa_finale)
+            stringa_fin += stringa_finale
+
 
         except Exception as err:
             print(err)
+
+print(stringa_fin)
