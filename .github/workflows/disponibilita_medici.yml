@@ -2,9 +2,11 @@ name: Disponibilità medici di base
 
 on:
   schedule:
-    - cron: '55 06 * * * '  # Esegue ogni giorno alle 6:55 UTC --> 8:55
-    - cron: '45 13 * * * '  # Esegue ogni giorno alle 15:45
-    - cron: '00 18 * * * '  # Esegue ogni giorno alle 20:00
+                            #ORARI IN UTC --> 6.00 == 7.00 Roma
+    - cron: '55 07 * * 1-5'  # Esegue ogni giorno alle 7:55 UTC --> 8:55 dal lunedì al venerdì
+    - cron: '00 09 * * 6-0'  # Esegue ogni giorno alle 9:00 UTC --> 10:00 dal sabato a domenica
+    - cron: '45 12 * * * '  # Esegue ogni giorno alle 14:45
+    - cron: '00 18 * * * '  # Esegue ogni giorno alle 19:00
 
   workflow_dispatch:
 
@@ -12,7 +14,7 @@ jobs:
   check_availability:
     runs-on: ubuntu-latest
     env:
-      DOCTORS_LIST: ${{ secrets.MEDICOTEST }}  # DOCTORS_LIST environment secret "abc123,456def,..."
+      DOCTORS_LIST: ${{ secrets.MEDICOLIST }}
 
     steps:
       - name: Checkout code
