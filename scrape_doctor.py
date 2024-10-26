@@ -9,6 +9,18 @@ site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p
 doct_list_string = os.environ['DOCTORS_LIST']
 doct_list = doct_list_string.split(',')
 
+def check_errors():
+    if nome_medico == '':
+        if current_doct == '':
+            raise ValueError("medico non inserito")
+        else:
+            raise ValueError(f"'{current_doct}' medico non trovato")
+    if len(data_analisi) == 0:
+        raise ValueError(f"{nome_medico} data non trovata")
+    if numero_posti == '' or numero_occupati == '':
+        raise ValueError(f"{nome_medico} valori posti non trovati")
+
+
 for current_doct in doct_list:
 
     url = site_url + current_doct
@@ -25,20 +37,22 @@ for current_doct in doct_list:
             body_posti = body_tr[0].find_all('td')
             numero_posti = body_posti[1].text
 
+            body_occupati = body_tr[1].find_all('td')
+            numero_occupati = body_occupati[1].text
+
             nome_medico = soup.find(id='tab01').strong.text
 
             reg_analysis_date = re.compile(r'\d\d/\d\d/\d\d\d\d')
             header = soup.table.tr.find_all('th')
             data_analisi = reg_analysis_date.findall(header[0].text)
+
+            check_errors()
+
             giorno_lettura = data_analisi[0]
 
-            if data_analisi[0] == None:
-                raise ValueError("data non trovata")
+            stringa_finale = nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati
 
-            stringa_finale = nome_medico + " - " + giorno_lettura + " - Posti liberi: " + numero_posti
-
-            print(stringa_finale + "\n")
-
+            print(stringa_finale)
 
         except Exception as err:
-            print(repr(err))
+            print(err)
