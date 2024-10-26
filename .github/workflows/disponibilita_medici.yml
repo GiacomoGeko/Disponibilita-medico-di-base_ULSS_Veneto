@@ -38,7 +38,8 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: print output
-        run: echo ::add-mask:: env.output_message
+        run: |
+          echo "::add-mask:: env.output_message"
 
       - name: Send availability message
         uses: appleboy/telegram-action@master
