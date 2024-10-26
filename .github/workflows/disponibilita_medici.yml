@@ -42,4 +42,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ::add-mask::{${{ env.output_message }}}
+          message: echo "::add-mask::{${{ env.output_message }}}"
