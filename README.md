@@ -25,6 +25,7 @@ MEDICOTEST --> Github_Action_SECRETS
 TELEGRAM_TOKEN --> Github_Action_SECRETS
 TELEGRAM_CHAT_ID --> Github_Action_SECRETS
 
-Settare_Schedulazione --> Esecuzione
+
 Github_Action_SECRETS --> Esecuzione
+Settare_Schedulazione ---> Esecuzione
 ```
