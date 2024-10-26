@@ -36,9 +36,7 @@ jobs:
           
           # Nascondi ogni riga dell'output nei log per la privacy
           while IFS= read -r line; do
-            echo "::add-mask::$line"
-            echo "\n"  # Aggiunge una riga vuota nel log
-            echo "\n"  # Aggiunge una riga vuota nel log
+            echo "::add-mask::$line\n\n"
           done <<< "$output_message"
           
           # Aggiungi l'output completo come variabile di ambiente per il passaggio successivo
