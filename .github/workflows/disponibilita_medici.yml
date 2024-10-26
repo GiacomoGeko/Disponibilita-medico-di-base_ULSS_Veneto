@@ -31,12 +31,13 @@ jobs:
       - name: Run availability check
         id: availability_check
         run: |
-          # Esegui lo script Python e salva l'output in una variabile
+          # Esegui lo script Python e salva l'output nella variabile output_message
           output_message=$(python scrape_doctor.py)
           
           # Nascondi ogni riga dell'output nei log per la privacy
           while IFS= read -r line; do
             echo "::add-mask::$line"
+            echo ""  # Aggiunge una riga vuota nel log
           done <<< "$output_message"
           
           # Aggiungi l'output completo come variabile di ambiente per il passaggio successivo
