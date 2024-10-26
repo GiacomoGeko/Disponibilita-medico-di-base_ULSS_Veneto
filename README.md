@@ -19,11 +19,11 @@ https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri
 ``` mermaid
 graph TD
 
-Cercare_medici --> Ottenere_Id --> MEDICOTEST
+Cercare_medici --> Ottenere_Id --> MEDICOLIST
 Creare_bot_telegram --> Ottenere_Token_Bot_Telegram --> TELEGRAM_TOKEN
 Creare_bot_telegram --> Ottenere_ChatId_Personale --> TELEGRAM_CHAT_ID
 
-MEDICOTEST --> Github_Action_SECRETS
+MEDICOLIST --> Github_Action_SECRETS
 TELEGRAM_TOKEN --> Github_Action_SECRETS
 TELEGRAM_CHAT_ID --> Github_Action_SECRETS
 
