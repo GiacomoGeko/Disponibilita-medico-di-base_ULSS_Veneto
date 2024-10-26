@@ -1,4 +1,4 @@
-# Scheduled-Action-Test
+# Disponibilità medico di base ULSS - Veneto
 
 Controllo programmato per verificare la disponibilità di specifici medici di base dell'ULSS (Veneto), con notifica tramite Bot Telegram
 
@@ -25,9 +25,7 @@ MEDICOTEST --> Github_Action_SECRETS
 TELEGRAM_TOKEN --> Github_Action_SECRETS
 TELEGRAM_CHAT_ID --> Github_Action_SECRETS
 
-Forkare_codice --> Github_Action_SECRETS
-Forkare_codice --> Settare_Schedulazione
 
-Settare_Schedulazione --> Esecuzione
 Github_Action_SECRETS --> Esecuzione
+Settare_Schedulazione ---> Esecuzione
 ```
