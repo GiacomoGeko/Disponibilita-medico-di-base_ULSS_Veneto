@@ -51,7 +51,7 @@ for current_doct in doct_list:
 
             giorno_lettura = data_analisi[0]
 
-            stringa_finale = nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati + "\n\n"
+            stringa_finale = nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati + "\n"
 
             stringa_fin += stringa_finale
 
