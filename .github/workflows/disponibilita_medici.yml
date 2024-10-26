@@ -31,15 +31,20 @@ jobs:
       - name: Run availability check
         id: availability_check
         run: |
-          python scrape_doctor.py > output.txt
+          # Esegui lo script Python e salva l'output in una variabile
+          output_message=$(python scrape_doctor.py)
           
+          # Nascondi l'output nei log per la privacy
+          echo "::add-mask::$output_message"
+          
+          # Aggiungi l'output come variabile di ambiente per il passaggio successivo
           echo "output_message<<EOF" >> $GITHUB_ENV
-          cat output.txt >> $GITHUB_ENV
+          echo "$output_message" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: print output
         run: |
-          echo "::add-mask:: env.output_message"
+          echo "::add-mask::{env.output_message}"
 
       - name: Send availability message
         uses: appleboy/telegram-action@master
