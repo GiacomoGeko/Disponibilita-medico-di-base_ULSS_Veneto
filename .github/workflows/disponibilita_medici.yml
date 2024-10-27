@@ -2,11 +2,8 @@ name: Disponibilità medici di base
 
 on:
   schedule:
-                            #ORARI IN UTC --> 6.00 == 7.00 Roma
     - cron: '55 07 * * 1-5'  # Esegue ogni giorno alle 7:55 UTC --> 8:55 dal lunedì al venerdì
     - cron: '00 09 * * 6,0'  # Esegue ogni giorno alle 9:00 UTC --> 10:00 dal sabato a domenica
-    - cron: '45 12 * * * '  # Esegue ogni giorno alle 13:45
-    - cron: '00 18 * * * '  # Esegue ogni giorno alle 19:00
 
   workflow_dispatch:
 
