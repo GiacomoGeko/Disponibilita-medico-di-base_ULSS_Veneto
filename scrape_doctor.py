@@ -38,9 +38,6 @@ for current_doct in doct_list:
             body_posti = body_tr[0].find_all('td')
             numero_posti = body_posti[1].text
 
-            body_occupati = body_tr[1].find_all('td')
-            numero_occupati = body_occupati[1].text
-
             nome_medico = soup.find(id='tab01').strong.text
 
             reg_analysis_date = re.compile(r'\d\d/\d\d/\d\d\d\d')
@@ -51,7 +48,7 @@ for current_doct in doct_list:
 
             giorno_lettura = data_analisi[0]
 
-            stringa_medico = " ∙ " + nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + " su " + numero_occupati + "\n\n"
+            stringa_medico = " ∙ " + nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + "\n\n"
 
             stringa_finale += stringa_medico
 

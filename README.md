@@ -1,11 +1,11 @@
 # Disponibilità medico di base ULSS - Veneto
 
-Controllo programmato per verificare la disponibilità di specifici medici di base dell'ULSS (Veneto), con notifica tramite Bot Telegram
+Controllo schedulato per verificare la disponibilità di specifici medici di base dell'ULSS (Veneto), con esecuzione tramite Github Actions e notifica tramite Bot Telegram
 
 - Necessario sapere che medico si vuole controllare
 - Recuperare il codice identificativo dei medici interessati
 - Creare bot telegram e recuperare il token e il proprio chat_id
-- Inserire nel secrets di github actions TELEGRAM_CHAT_ID, TELEGRAM_TOKEN, MEDICOTEST
+- Inserire nel secrets di github actions TELEGRAM_CHAT_ID, TELEGRAM_TOKEN, MEDICOLIST
   - MEDICOLIST inserire gli id dei medici separati da virgole ","
 - Settare l'orario di schedulazione
 - Eseguire
