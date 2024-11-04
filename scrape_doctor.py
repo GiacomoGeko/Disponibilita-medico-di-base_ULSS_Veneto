@@ -17,7 +17,7 @@ def check_errors():
             raise ValueError(f"'{current_doct}' medico non trovato")
     if len(data_analisi) == 0:
         raise ValueError(f"{nome_medico} data non trovata")
-    if numero_posti == '' or numero_occupati == '':
+    if numero_posti == '':
         raise ValueError(f"{nome_medico} valori posti non trovati")
 
 stringa_finale= ""
