@@ -11,8 +11,8 @@ def estrai_luoghi(input):
 
 #inserire i dati
 data = {
-    "provincia": "TV",  #inserire il codice della provincia: BL PD RO TV VE VI VR
-    "comune": "ASOLO",        # inserire nome del comune: Venezia
+    "provincia": "VE",  #inserire il codice della provincia: BL PD RO TV VE VI VR
+    "comune": "VENEZIA",        # inserire nome del comune: Venezia
     # Aggiungi altri parametri specificati nel form
 }
 
@@ -39,8 +39,10 @@ if response.status_code == 200:
     # res = soupsoup.find_all("luogo")
     res = soupsoup.find_all("id")
 
+    result = [tag.get_text() for tag in res]
+
     with open("scriptoutput.html","w", encoding="utf-8") as o:
-        print(res, file=o)
+        print(result, file=o)
 
 else:
     print("Errore:", response.status_code)
