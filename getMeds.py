@@ -11,7 +11,7 @@ def estrai_luoghi(input):
 
 #inserire i dati
 data = {
-    "provinciaChangeEvent": "TV",  #inserire il codice della provincia: BL PD RO TV VE VI VR
+    "provincia": "TV",  #inserire il codice della provincia: BL PD RO TV VE VI VR
     "comune": "ASOLO",        # inserire nome del comune: Venezia
     # Aggiungi altri parametri specificati nel form
 }
