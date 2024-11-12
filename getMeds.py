@@ -25,6 +25,9 @@ data = {
 
 }
 
+if data["indirizzo"] == "":
+    data["distanza"] = ""   #Se non esiste un indirizzo specificato annullo anche il valore distanza dall'indirizzo
+
 # Effettuo la richiesta
 response = requests.post(url, data=data)
 
