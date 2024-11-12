@@ -21,8 +21,7 @@ data = {
     "indirizzoMedico": "",      # indirizzo del medico
     "tipologia": "",         # medico medicina generale o pediatra: MMG o PLS
     "indirizzo": "",            # indirizzo a cui si applica la distanza
-    #"distanza": "1",             # <1km o 1<x<5 o >5km : 1 o 2 o 3
-    #DISTANZA DA RIVEDERE perché non è questo il nome del parametro
+    "distanza": "1",             # <1km o 1<x<5 o >5km : 1 o 2 o 3
 
 }
 
@@ -35,11 +34,15 @@ if response.status_code == 200:
     # filtro con beautiful soup
     form_script = output_html.div.find(class_='form-container').decode_contents()
     stringa_luoghi = estrai_luoghi(form_script)
-    luoghi = BeautifulSoup(stringa_luoghi, 'html.parser')
-    result = [tag.get_text() for tag in luoghi.find_all("id")]
+    if stringa_luoghi != None:
+        luoghi = BeautifulSoup(stringa_luoghi, 'html.parser')
+        result = [tag.get_text() for tag in luoghi.find_all("id")]
 
-    with open("scriptoutput.html","w", encoding="utf-8") as o:
-        print(result, file=o)
-
+        with open("scriptoutput.html","w", encoding="utf-8") as o:
+            print(result, file=o)
+            print(len(result), file=o)
+    else:
+        with open("scriptoutput.html", "w", encoding="utf-8") as o:
+            print("nessun medico", file=o)
 else:
     print("Errore:", response.status_code)
