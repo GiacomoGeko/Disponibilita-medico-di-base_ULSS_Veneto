@@ -6,7 +6,7 @@ Controllo schedulato per verificare la disponibilità di specifici medici di bas
 - Recuperare il codice identificativo dei medici interessati
 - Creare bot telegram e recuperare il token e il proprio chat_id
 - Inserire nel secrets di github actions TELEGRAM_CHAT_ID, TELEGRAM_TOKEN, MEDICOLIST
-  - MEDICOLIST inserire gli id dei medici separati da virgole ","
+  - MEDICOLIST inserire gli id dei medici separati da virgole "," e senza spazi
 - Settare l'orario di schedulazione
 - Eseguire
 
