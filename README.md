@@ -1,5 +1,7 @@
 # Disponibilità medico di base ULSS - Veneto
 
+In costruzione...
+
 Controllo schedulato per verificare la disponibilità di specifici medici di base dell'ULSS (Veneto), con esecuzione tramite Github Actions e notifica tramite Bot Telegram
 
 - Necessario sapere che medico si vuole controllare
