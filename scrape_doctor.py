@@ -9,6 +9,9 @@ site_url = "https://salute.regione.veneto.it/servizi/cerca-medici-e-pediatri?p_p
 doct_list_string = os.environ['DOCTORS_LIST']
 doct_list = doct_list_string.split(',')
 
+print_type_string = os.environ['PRINT_TYPE']
+print_all = print_type_string == 'ALL'
+
 def check_errors():
     if nome_medico == '':
         if current_doct == '':
@@ -21,6 +24,7 @@ def check_errors():
         raise ValueError(f"{nome_medico} valori posti non trovati")
 
 stringa_finale= ""
+cont_positive = 0
 
 for current_doct in doct_list:
 
@@ -50,10 +54,12 @@ for current_doct in doct_list:
 
             stringa_medico = " ∙ " + nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + "\n\n"
 
-            stringa_finale += stringa_medico
-
+            if(numero_posti>0 or print_all)
+                stringa_finale += stringa_medico
+                cont_positive = cont_positive + 1
 
         except Exception as err:
             print(err)
 
-print(stringa_finale)
+if(cont_positive>0 or print_all)
+    print(stringa_finale)
