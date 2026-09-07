@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCTORS_LIST: ${{ secrets.MEDICOLIST }}
+      PRINT_TYPE: ${{ secrets.PRINT_TYPE }}
 
     steps:
       - name: Checkout code
