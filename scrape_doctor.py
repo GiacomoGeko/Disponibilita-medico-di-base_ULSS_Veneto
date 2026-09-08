@@ -54,7 +54,7 @@ for current_doct in doct_list:
 
             stringa_medico = " ∙ " + nome_medico + "\t- " + giorno_lettura + "\t- Posti liberi: " + numero_posti + "\n\n"
 
-            if numero_posti > 0 or print_all:
+            if int(numero_posti) > 0 or print_all:
                 stringa_finale += stringa_medico
                 cont_positive = cont_positive + 1
 
